@@ -2,8 +2,7 @@ import configparser
 import re
 
 from datetime import datetime
-from telethon import TelegramClient, events, sync
-from telethon.errors import SessionPasswordNeededError
+from telethon import TelegramClient, events
 from telethon.tl.types import PeerChannel
 
 REGEX_1 = r"[A-Za-z]+ H: [0-9]+/[0-9]+ \-\> [0-9]+/[0-9]+"

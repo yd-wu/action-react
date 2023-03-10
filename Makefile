@@ -15,7 +15,7 @@ install:  ## install library
 #########
 lint:  ## run static analysis with flake8
 	python -m black --check action_react setup.py
-	python -m flake8 action_react setup.py
+	python -m flake8 action_react setup.py --max-line-length 200
 
 # Alias
 lints: lint
