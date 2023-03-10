@@ -2,9 +2,7 @@ from action_react.main import check_message, get_target_channel, read_configs
 from datetime import datetime
 from pytest import mark
 from telethon.tl.types import PeerChannel
-from unittest.mock import MagicMock
 from unittest.mock import patch
-from unittest import TestCase
 
 
 @mark.parametrize(
