@@ -11,7 +11,7 @@ name = "action-react"
 authors = [{name = "yd-wu", email = "yw3960@columbia.edu"}]
 description="telegram listener tool"
 readme = "README.md"
-version = "0.0.1"
+version = "0.0.2"
 requires-python = ">=3.7"
 
 dependencies = ["Telethon >= 1.21.1"]
