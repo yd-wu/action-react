@@ -1,12 +1,11 @@
 import configparser
-import re
 
 from datetime import datetime
 from telethon import TelegramClient, events
 from telethon.tl.types import PeerChannel
 
-REGEX_1 = r"[A-Za-z]+ H: [0-9]+/[0-9]+ \-\> [0-9]+/[0-9]+"
-REGEX_2 = r"[A-Za-z]+ H: [0-9]+/[0-9]+ \-\> [0-9]+/[0-9]+/[0-9]"
+CATEGORY = "H"
+FILENAME = "config.ini"
 
 
 def read_configs(file_name):
@@ -35,18 +34,21 @@ def connect_to_telegram(username, api_id, api_hash, phone):
 
 
 def check_message(message, target_date, cities):
-    filtered_message = re.findall(REGEX_1, message)
-    if len(filtered_message) > 0:
-        message_candidate = re.findall(REGEX_2, message)
-        if len(message_candidate) > 0:
-            city, _, _, _, date = message_candidate[0].split(" ")
-        else:
-            city, _, _, _, date = filtered_message[0].split(" ")
-            date = "2023/" + date
-        date = datetime.strptime(date, "%Y/%m/%d").date()
-        if date < target_date and city.lower() in cities:
-            return True, (date, city)
-    return False, None
+    try:
+        colon_list = message.split(":")
+        message_list = [" ".join(colon_list[0].split()[:-1])] + [colon_list[0].split()[-1]] + colon_list[1].split()
+        if message_list[1] == CATEGORY:
+            city = message_list[0]
+            date = message_list[-1]
+            if len(date.split("/")) == 2:
+                date = "2023/" + date
+            date = datetime.strptime(date, "%Y/%m/%d").date()
+            if date < target_date and city.lower() in cities:
+                return True, (date, city)
+        return False, None
+    except Exception as e:
+        print(f"error {e}")
+        return False, None
 
 
 def main(api_id, api_hash, phone, username, target_date, cities):
@@ -67,5 +69,5 @@ def main(api_id, api_hash, phone, username, target_date, cities):
 
 
 if __name__ == "__main__":
-    api_id, api_hash, phone, username, target_date, cities = read_configs("config.ini")
+    api_id, api_hash, phone, username, target_date, cities = read_configs(FILENAME)
     main(api_id, api_hash, phone, username, target_date, cities)
