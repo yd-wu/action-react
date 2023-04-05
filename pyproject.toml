@@ -13,7 +13,7 @@ description="telegram listener tool"
 readme = "README.md"
 version = "0.0.2"
 requires-python = ">=3.7"
-dynamic = ["dependencies"]
+
 dependencies = ["Telethon >= 1.21.1"]
 
 classifiers = [
@@ -98,6 +98,3 @@ python_version = '3.10'
 [tool.pytest.ini_options]
 asyncio_mode = 'strict'
 testpaths = 'action_react/tests'
-
-[tool.setuptools.dynamic]
-dependencies = {file = ["requirements.txt"]}
