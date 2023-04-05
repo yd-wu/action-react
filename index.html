@@ -4,8 +4,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome to action-react’s documentation! &#8212; action-react 0.0.2 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
@@ -33,21 +32,151 @@
 
           <div class="body" role="main">
             
-  <section id="welcome-to-action-react-s-documentation">
+  <div class="section" id="welcome-to-action-react-s-documentation">
 <h1>Welcome to action-react’s documentation!<a class="headerlink" href="#welcome-to-action-react-s-documentation" title="Permalink to this heading">¶</a></h1>
-<p>========================================</p>
-<p>.. toctree::
-:maxdepth: 2
-:caption: Contents:</p>
-</section>
-<section id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h1>
-<ul class="simple">
-<li><p>:ref:<code class="docutils literal notranslate"><span class="pre">genindex</span></code></p></li>
-<li><p>:ref:<code class="docutils literal notranslate"><span class="pre">modindex</span></code></p></li>
-<li><p>:ref:<code class="docutils literal notranslate"><span class="pre">search</span></code></p></li>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">action-react</span></code> specifically listens to an account in a Telegram chat and makes corresponding http calls given the content of the message. This is inspired by <a class="reference external" href="https://github.com/Trinkle23897/tuixue.online-visa">tuixue.online-visa</a>, a tool that periodically checks and publishes US consulate visa appointment availabilities across the world.</p>
+<p>A possible application of this tool is to use it to listen to a Telegram bot publishing messages about new visa appointments, and makes http calls to the consulate appointment service to grab the desired spot.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h2>
+<p>Install the library’s dependencies and build the library using:</p>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">action-react</span></code></p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<p>In your code, begin by importing the package:</p>
+<p><code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">action-react</span> <span class="pre">import</span> <span class="pre">main</span></code></p>
+<p>You can connect it to a telegram chat using:</p>
+<p><code class="docutils literal notranslate"><span class="pre">main(api_id,</span> <span class="pre">api_hash,</span> <span class="pre">phone,</span> <span class="pre">username,</span> <span class="pre">target_date,</span> <span class="pre">cities)</span></code></p>
+<p>For example, you can use <code class="docutils literal notranslate"><span class="pre">main(&quot;123&quot;,</span> <span class="pre">&quot;hash123&quot;,</span> <span class="pre">&quot;+12345678901&quot;,</span> <span class="pre">&quot;username&quot;,</span> <span class="pre">datetime.date(2022,2,2),</span> <span class="pre">[&quot;boston&quot;,</span> <span class="pre">&quot;houston&quot;])</span></code> to start the function. While the script containing <code class="docutils literal notranslate"><span class="pre">main</span></code> is running, you’ll get a prompt <code class="docutils literal notranslate"><span class="pre">enter</span> <span class="pre">entity</span> <span class="pre">(telegram</span> <span class="pre">URL</span> <span class="pre">or</span> <span class="pre">entity</span> <span class="pre">id)</span> <span class="pre">to</span> <span class="pre">listen</span> <span class="pre">to</span></code>, to which you can enter the listener target, for example <code class="docutils literal notranslate"><span class="pre">https://t.me/tuixue_h_visa</span></code>. Afterwards, if the client is successfully connected to the chat, the script will print out logs like the ones below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">London</span> <span class="n">H</span><span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">17</span> <span class="o">-&gt;</span> <span class="mi">4</span><span class="o">/</span><span class="mi">26</span>
+<span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">Vancouver</span> <span class="n">H</span><span class="p">:</span> <span class="mi">2024</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">18</span> <span class="o">-&gt;</span> <span class="mi">2024</span><span class="o">/</span><span class="mi">7</span><span class="o">/</span><span class="mi">10</span>
+<span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">Dublin</span> <span class="n">H</span><span class="p">:</span> <span class="mi">4</span><span class="o">/</span><span class="mi">27</span> <span class="o">-&gt;</span> <span class="mi">4</span><span class="o">/</span><span class="mi">21</span>
+<span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">Guadalajara</span> <span class="n">H</span><span class="p">:</span> <span class="mi">7</span><span class="o">/</span><span class="mi">25</span> <span class="o">-&gt;</span> <span class="mi">6</span><span class="o">/</span><span class="mi">28</span>
+<span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">Paris</span> <span class="n">H</span><span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">4</span><span class="o">/</span><span class="mi">7</span>
+<span class="n">received</span> <span class="n">message</span><span class="p">:</span> <span class="n">Paris</span> <span class="n">H</span><span class="p">:</span> <span class="mi">5</span><span class="o">/</span><span class="mi">2</span> <span class="o">-&gt;</span> <span class="mi">4</span><span class="o">/</span><span class="mi">20</span>
+</pre></div>
+</div>
+<p>If a good date has been found, something like <code class="docutils literal notranslate"><span class="pre">found</span> <span class="pre">a</span> <span class="pre">good</span> <span class="pre">appointment</span> <span class="pre">in</span> <span class="pre">Paris</span> <span class="pre">on</span> <span class="pre">2023-05-16</span></code> will be printed.</p>
+<p>Alternatively, you can directly run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">main.py</span></code> after setting up the configurations in <code class="docutils literal notranslate"><span class="pre">config.ini</span></code>. The functionality will be the same as described above as the usage of the <code class="docutils literal notranslate"><span class="pre">main</span></code> function.</p>
+</div>
+<div class="section" id="module-action_react.main">
+<span id="api-reference"></span><h2>API reference<a class="headerlink" href="#module-action_react.main" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="action_react.main.check_message">
+<span class="sig-prename descclassname"><span class="pre">action_react.main.</span></span><span class="sig-name descname"><span class="pre">check_message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cities</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_react.main.check_message" title="Permalink to this definition">¶</a></dt>
+<dd><p>Process incoming telegram messages</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>message</strong> (<em>str</em><em>, </em><em>message</em>) – </p></li>
+<li><p><strong>target_date</strong> (<em>date</em><em>, </em><em>the date upon which to improve</em>) – </p></li>
+<li><p><strong>cities</strong> (<em>list</em><em> of </em><em>city names</em>) – </p></li>
 </ul>
-</section>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>A tuple. The first element indicates whether a good date</em></p></li>
+<li><p><em>can be retrieved from the message. The second element is None</em></p></li>
+<li><p><em>if the first element is False. Otherwise, it’s a tuple whose</em></p></li>
+<li><p><em>first element is the date and the second element is the city</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_react.main.connect_to_telegram">
+<span class="sig-prename descclassname"><span class="pre">action_react.main.</span></span><span class="sig-name descname"><span class="pre">connect_to_telegram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_react.main.connect_to_telegram" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connect to telegram</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>username</strong> (<em>str</em><em>, </em><em>user name</em>) – </p></li>
+<li><p><strong>api_id</strong> (<em>str</em><em>, </em><em>telegram api id</em>) – </p></li>
+<li><p><strong>api_hash</strong> (<em>str</em><em>, </em><em>telegram api hash</em>) – </p></li>
+<li><p><strong>phone</strong> (<em>str</em><em>, </em><em>phone number</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>client</strong></p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>telegram client</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_react.main.get_target_channel">
+<span class="sig-prename descclassname"><span class="pre">action_react.main.</span></span><span class="sig-name descname"><span class="pre">get_target_channel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#action_react.main.get_target_channel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read telegram channel to listen to from command line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>listening_channel</strong></p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>channel name</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_react.main.main">
+<span class="sig-prename descclassname"><span class="pre">action_react.main.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">api_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_hash</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_date</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cities</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_react.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>Main function that acts on a target telegram message. It runs
+until interrupted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>api_id</strong> (<em>str</em><em>, </em><em>telegram api id</em>) – </p></li>
+<li><p><strong>api_hash</strong> (<em>str</em><em>, </em><em>telegram api hash</em>) – </p></li>
+<li><p><strong>phone</strong> (<em>str</em><em>, </em><em>telegram phone number</em>) – </p></li>
+<li><p><strong>username</strong> (<em>str</em><em>, </em><em>telegram username</em>) – </p></li>
+<li><p><strong>target_date</strong> (<em>date</em><em>, </em><em>the date upon which to improve</em>) – </p></li>
+<li><p><strong>cities</strong> (<em>[</em><em>str</em><em>]</em><em>, </em><em>list</em><em> of </em><em>city names</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="action_react.main.read_configs">
+<span class="sig-prename descclassname"><span class="pre">action_react.main.</span></span><span class="sig-name descname"><span class="pre">read_configs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#action_react.main.read_configs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read configuration parameters from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em><em>, </em><em>relative path from the root directory</em><em> of </em><em>this package</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>api_id</strong> (<em>telegram api id</em>)</p></li>
+<li><p><strong>api_hash</strong> (<em>telegram api hash</em>)</p></li>
+<li><p><strong>phone</strong> (<em>telegram phone number</em>)</p></li>
+<li><p><strong>username</strong> (<em>telegram username</em>)</p></li>
+<li><p><strong>target_date</strong> (<em>the date upon which to improve</em>)</p></li>
+<li><p><strong>cities</strong> (<em>list of city names</em>)</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="indices-and-tables">
+<h3>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+</div>
 
 
           </div>
