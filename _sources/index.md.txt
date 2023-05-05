@@ -39,6 +39,8 @@ Alternatively, you can directly run `python main.py` after setting up the config
 ```eval_rst
 .. automodule:: action_react.main
     :members:
+.. automodule:: action_react.react
+    :members:
 
 .. toctree::
    :maxdepth: 2
