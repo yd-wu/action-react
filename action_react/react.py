@@ -19,6 +19,20 @@ chrome_options.add_experimental_option("detach", True)
 
 
 def process_with_city_and_date(reaction, object, city, date):
+    """
+    Process string object with city and/or date
+
+    Parameters
+    ----------
+    reaction: json object, reaction
+    object: str, string to be updated
+    city: str, target city
+    date: date, target date
+
+    Returns
+    -------
+    object: updated object
+    """
     if "replace_city" in reaction and reaction["replace_city"] is True:
         object.replace("city", city)
     if "replace_date" in reaction and reaction["replace_date"] is True:
@@ -27,6 +41,14 @@ def process_with_city_and_date(reaction, object, city, date):
 
 
 def react(date, city):
+    """
+    React
+
+    Parameters
+    ----------
+    city: str, target city
+    date: date, target date
+    """
     c_service = Service("/usr/bin/chromedriver")
     c_service.command_line_args()
     c_service.start()
