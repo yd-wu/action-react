@@ -1,6 +1,7 @@
 import configparser
 
 from datetime import datetime
+from action_react.react import react
 from telethon import TelegramClient, events
 from telethon.tl.types import PeerChannel
 
@@ -128,7 +129,7 @@ def main(api_id, api_hash, phone, username, target_date, cities):
         is_good, info = check_message(message, target_date, cities)
         if is_good:
             date, city = info
-            # TODO: expand the action part
+            react(date, city)
             print(f"found a good appointment in {city} on {date} ")
 
     with client:
